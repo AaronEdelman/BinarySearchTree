@@ -53,16 +53,16 @@ namespace BinarySearchTree
         }
         public bool Search(int searchData)
         {
-            Node current = head;
+            current = head;
             while (current.left != null || current.right != null)
             {
-                if (current.left.data == searchData || current.right.data == searchData)
+                if (current.data == searchData)
                 {
                     Console.WriteLine("This value exists");
                     Console.ReadLine();
                     return true;
                 }
-                else if (searchData < current.left.data)
+                else if (searchData < current.data)
                 {
                     Console.WriteLine("left");
                     current = current.left;
@@ -73,8 +73,17 @@ namespace BinarySearchTree
                     current = current.right;
                 }
             }
-            Console.WriteLine("This value does not exist");
-            return false;
+            if (current.data == searchData)
+            {
+                Console.WriteLine("This value exists");
+                Console.ReadLine();
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("This value does not exist");
+                return false;
+            }
         }
     }
 }
