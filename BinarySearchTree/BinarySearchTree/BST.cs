@@ -9,8 +9,7 @@ namespace BinarySearchTree
     class BST
     {
         Node head = null;
-        Node current;
-
+        Node current = null;
         public BST()
         {
 
@@ -24,7 +23,7 @@ namespace BinarySearchTree
                 return;
             }
             current = head;
-            Traverse(current, node);
+            current = Traverse(current, node);
             if (current.data > node.data)
             {
                 current.left = node;
@@ -34,22 +33,24 @@ namespace BinarySearchTree
                 current.right = node;
             }
         }
-        public void Traverse(Node current, Node node)
+        public Node Traverse(Node current, Node node)
         {
-            if (current.data > node.data && current.left != null)
+            while (current != null)
             {
-               
-                current = current.left;
-                Traverse(current, node);
+                if (current.data > node.data && current.left != null)
+                {
+                    current = current.left;
+                }
+                else if (current.data <= node.data && current.right != null)
+                {
+                    current = current.right;
+                }
+                else
+                {
+                    return current;
+                }
             }
-            else if (current.data >= node.data && current.right != null)
-            {
-                current = current.right;
-                Traverse(current, node);
-            }
-            else
-            {
-            }
+            return current;
         }
         public bool Search(int searchData)
         {
